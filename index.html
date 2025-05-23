@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kata Motivasi dengan Musik</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .quote-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease;
+    }
+
+    .quote {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .author {
+      font-size: 1.2rem;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .audio-control {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quote-box">
+  <div class="quote" id="quote">Tetap semangat, karena kerja kerasmu hari ini adalah pintu kesuksesan esok hari.</div>
+  <div class="author" id="author">- Anonim</div>
+</div>
+
+<audio id="bg-music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
+<script>
+  const quotes = [
+    { text: "Jangan menunggu waktu yang tepat, karena waktu tak akan pernah benar-benar tepat.", author: "Napoleon Hill" },
+    { text: "Kegagalan adalah kesempatan untuk memulai lagi dengan lebih cerdas.", author: "Henry Ford" },
+    { text: "Semangat adalah bahan bakar dari keberhasilan.", author: "Anies Baswedan" },
+    { text: "Percaya diri adalah langkah pertama untuk meraih kesuksesan.", author: "Unknown" },
+    { text: "Jika kamu lelah, istirahatlah, bukan menyerah.", author: "Anonim" },
+    { text: "Impian besar dimulai dari langkah kecil dengan semangat yang tak pernah padam.", author: "Anonim" }
+  ];
+
+  let index = 0;
+  const quoteEl = document.getElementById('quote');
+  const authorEl = document.getElementById('author');
+
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    quoteEl.style.opacity = 0;
+    authorEl.style.opacity = 0;
+
+    setTimeout(() => {
+      quoteEl.textContent = quotes[index].text;
+      authorEl.textContent = "- " + quotes[index].author;
+      quoteEl.style.opacity = 1;
+      authorEl.style.opacity = 1;
+    }, 500);
+  }, 6000);
+</script>
+
+</body>
+</html>
